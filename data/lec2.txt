@@ -1,0 +1,1426 @@
+2:15
+I'm working on homework zero. Uh the be sure you submit it uh on Friday
+2:21
+by the deadline and uh discussions will start this week. Uh they start on the
+2:27
+discussions will be on Wednesdays. Uh this week we will staff just two discussions because we only have one TA.
+2:33
+Um and this is 3 to 4 on Wednesday and 4 to 5 on Wednesday. On the website you
+2:40
+should see the room. So go to e282.org you'll see the room. So go come to the come to the discussion have your laptop
+2:46
+ready. We will post on uh ed before the
+2:51
+sort of computational part code we want you to install on your machine. We'll also have a link uh hopefully there that you can use to download in case you
+2:58
+haven't already. You should have a functioning uh Anaconda environment on your laptop so you can do do work on it.
+3:06
+Uh you can also use collab but you have to figure out um that on your own possibly. The
+3:13
+important thing is the discussion we'll build on we talk about in lecture. this will generally be the case and if there
+3:20
+isn't room in the discussion given the number of students and approximately 500 students who want to take the class and
+3:26
+the number of seats in those rooms um if you're there and the room is full you
+3:32
+can't get in you know we're very sorry sorry uh but we will post the entire
+3:37
+worksheet on ed afterwards so you can see it as and the code will already have
+3:43
+been posted so discussions are interactive in this course. We expect you to go work with
+3:49
+others and be doing that. This is not a sit back and relax kind of discussion. If that's your idea of what a good
+3:54
+discussion is, just skip, you know, don't go. Um, give your seat to someone
+3:59
+else. Uh, important other announcement is it looks quite likely that we will be
+4:06
+able to expand the class. So, if you want to get in, remember you have to do homework zero. And
+4:12
+and even if you're already in Yeah. Even if you you're in, you have to do homework zero or you'll be dropped.
+4:17
+So this is extremely important. But uh we have uh
+4:23
+keeping our fingers crossed that hey if we hope to be able to let everyone in who has does homework zero successfully
+4:30
+who actually feels like you know they want to be in the class. And for those of you if you're, you know, if you're waiting outside the room three to four
+4:36
+and somehow you can't get into the room, what I highly recommend doing is those of you who are standing outside the
+4:42
+room, don't just leave. Everyone who's standing outside the room, get together
+4:48
+and say, "Okay, let's together work on this discussion worksheet." Uh there,
+4:53
+you know, you you'll have a you'll have a critical mass of people. Let's say you can't get into the room. Use the time,
+4:59
+use the time to make connections because that is what is needed to you know
+5:04
+succeed in this machine learning deep learning world is that you will have to be selfarters. So this is in some sense
+5:13
+a simulation of the real world before you graduate. It's uh so use that. Yes.
+5:18
+Will there be extra sheets printed for people who are going to stand outside or who may not get in? Yeah,
+5:24
+we can try to make that happen. We will try our best. That's a great idea. And so yes, we will support that by making
+5:29
+sure that we can try to keep a stack of sheets outside the room. But even if we
+5:34
+somehow fail at that, it will be posted on ED so you can just download it and
+5:40
+and do it even if somehow but that's a great suggestion and we will do our best to have extra sheets so that you know
+5:46
+you can just work on your own. In typical week once we're in steady state, we'll be posting on to ED only after the
+5:53
+discussions have completed uh because we know how many students have very bad habits and so it's important for people
+6:00
+to go. But this week we'll because of the enormous difference between the number
+6:06
+of seats we can put forward and the number of students who want to take the class.
+6:12
+Yes. Discussions will not be recorded. This is on the website. So yeah, discussions
+6:18
+will not be recorded. You're expected to go take notes.
+6:26
+Yes. Will solutions be posted? Yes, we will t typically post discussion
+6:31
+solutions uh afterwards.
+6:40
+Okay, good. So let's uh continue with the material. So last time at the end we're talking about thinking about you
+6:46
+know building up the idea of neural nets from the perspective of function approximation. So this is just a quick you know recap of where we were. So I
+6:53
+remember I drew a function on the board saying consider a function easiest one to visualize our functions of one
+7:00
+variable that have exactly one output. So R is to R. So you can draw them on
+7:05
+the board. So here we've drawn it. And now the machine learning problem is that
+7:10
+there's a true function but you don't know it. What you have is samples. So here we've just labeled in red.
+7:19
+Oops. You can see here these little x's. These
+7:25
+are the x's that you have in your training data. And the corresponding y's I've just labeled here. So this is a
+7:32
+pair an xy pair. Uh so you have all of these. And what
+7:37
+you're trying to do is you're trying to from these samples learn what the function is. This is like a way of
+7:43
+visualizing what's happening. Discussion will be going over this with code for you.
+7:48
+Okay. So now last time we talked about the idea of you know you can approximate it with something. So you can approximate a peiewise linear
+7:55
+approximation. So you see here in
+8:02
+in this blue there's a particular peacewise linear uh function
+8:07
+approximation that is drawn. Not a particularly good one. You see all kinds of kinks and things that are not tracking the true function. But notice
+8:14
+that this peacewise linear approximation that's drawn, the second blue one here,
+8:19
+it does go through all of the training points. So notice it goes through all of the red points. Okay, this is a generic
+8:26
+thing that can happen. Um, there's another one, the
+8:32
+other blue one you can see that also hits all the training points and somehow feels a little bit better. So, this is
+8:38
+just meant to remind you of things that you've already seen. But the focus where we were going last time was to say that
+8:46
+you have such a peace-wise linear function. You would like to
+8:51
+learn it from data. An intermediate step that's very important is you have to represent that function somehow on the
+8:58
+computer. And so you have to understand what does it take to represent the function you want. So in this case we said that this peacewise linear
+9:04
+functions are specified by these elbow locations, the slopes and an overall
+9:10
+vertical bias. So to
+9:15
+parameterize that for the computer we have to pick some linear algebraic friendly representation of that. So we
+9:21
+started with this last time and last time we got to saying that if we write
+9:27
+this as the representation for the function where the g theta is described
+9:32
+this way where the g theta individually looks like this. It's a function that has one
+9:38
+kink in it. Then if you add up a function shifted with lot with one kink, you can get a function with as many
+9:44
+kinks as you want wherever you want them. Okay? As long as you can move the kinks.
+9:49
+So that's what we did last time. Everyone cool with with this? So already
+9:55
+you know from your intuition that if I choose a pie-wise linear approximation with enough pieces, I can get as close
+10:02
+as I want to the function I want. Okay. So
+10:07
+now let's just draw this thing
+10:14
+in block diagram form. So it's useful to be able to draw diagrams. So in this case we have to
+10:21
+draw this wx plus b. So that's taking x multiplying it by a w and then adding a
+10:27
+b to it. And then we have to run it through this max with zero. So the max with zero is called a rail loop. Right?
+10:35
+So it's literally the function that's max of zero and whatever its input is. It's called rectifying linear unit. It's
+10:42
+one of the most simple simplest nonlinearities you have. Has lots of nice interesting features which will be
+10:48
+talk about later. But now in neural network terminology which we expect everyone to have seen but
+10:54
+maybe the terminology you saw was different. So I want to make sure everyone's aligned to standard some standard terminology. These are these
+10:59
+nonlinearities are sometimes called activation functions. It's just a term. It has no
+11:06
+just a just a word. So if we put this stuff together this
+11:12
+math here together as math we can just expand out these g thetas
+11:17
+and you see an expression like this. So here is another piece of notation that we want
+11:23
+to make sure everyone is is familiar with. And the piece of notation here is that
+11:28
+when we have a nonlinearity, we sometimes apply the nonlinearity to an
+11:34
+entire vector. So you take x is a scaler here. So just remember this is a scaler.
+11:42
+But this W, if I group together all of these, if I take this sum. So notice what I've done here is we've taken this
+11:49
+sum and we've just turned it into a matrix vector multiplication in this case. And
+11:58
+so this thing is a vector. All these biases, these B prime I those are, you
+12:04
+know, a vector. And when we have a nonlinearity that acts on a matrix or a vector, unless we specify
+12:13
+otherwise, what that means is it acts component-wise. It's a piece of notation. So it acts on
+12:19
+every component. So notice this is a compact representation of what you have.
+12:26
+Any questions on this compact representation? Okay, good. So now
+12:36
+there's a question of you know how do you label these things because you have this B over here right good here you
+12:44
+have this B over here and you have this B over here so typically we will label
+12:49
+these things with which layer they correspond to these biases so let me
+12:54
+write that in right now so let's call this we're using these primes we might
+13:00
+as well interpret them as ones Okay, so let's just uh call that one.
+13:07
+Make that prime into a one because it looks like a one. And then this other bias comes afterwards. So
+13:14
+this is two and this weight matrix is also two.
+13:20
+Sometimes we'll specify very clearly for you what the shapes are of things like how big they are and sometimes you'll be
+13:26
+expected to figure it out from context. So in this case the context is how big is this sum.
+13:34
+So we'll just make it up to D. In which case you can interpret this X
+13:42
+is a scalar this W as let's say since we're
+13:49
+premultiplying it by oops we're premultiplying it by a matrix we should make this into a column. So we can think
+13:56
+of this as a column. It's a column with D entries in it. This is a matrix that
+14:03
+has to give a scalar output. So we'll call it'll be a row with D entries. But
+14:08
+in general, keeping track of the shapes of things is something that's very important and you should be doing. It's
+14:13
+one of the baines of uh working in neural networks and just have to do it
+14:20
+also in the code. Um so in the code often we'll use this package called IGEN
+14:25
+which helps you deal with these kind of sums and things like this but you still have to keep track of the shapes of everything.
+14:32
+Okay. So it's useful to also be able to think about this thing not as symbolic
+14:38
+math but also as a diagram. So in block diagram form putting everything together
+14:44
+what we have is we have x coming in then it meets these uh weights and
+14:52
+biases in parallel. Notice the parallelism is very visible goes through relus and then we get these
+14:59
+intermediate activations. So what we do is we we call this make use dotted lines
+15:05
+here. Maybe I'll use a different color.
+15:10
+It's not visible what you're writing. This is now okay.
+15:17
+So we'll call this the input layer.
+15:24
+Then this is the
+15:29
+first hidden layer. Again, this is just standard neural network terminology.
+15:36
+and the activations at the end. These are called the activations.
+15:47
+So this is activation. You hear someone talk about the activations at a particular layer. What they mean is what
+15:53
+is the output of that layer. This can get confusing because sometimes we'll have layers that are just linear
+15:59
+and don't have any nonlinearities. Okay, but they still use this term activations. So all these hes are the
+16:05
+hidden activations and then we have
+16:11
+all these second layer weights and
+16:16
+the second layer bias. And in this case if it's the last layer
+16:23
+we typically call it the output layer. Use the same color.
+16:38
+Uh typically output layers we will have will be something that is linear aphine
+16:46
+and oftentimes we will sometimes have things that are after the output layer either in processing that are like we'll
+16:53
+some put the loss we'll call it a loss layer sometimes we'll convert things into probabilities like softmax layers
+16:58
+we'll have other things we'll stick on but typically as you've seen in your uh previous class you have an input you
+17:05
+have some number of layers in domain that have involve typically some
+17:10
+nonlinearity and matrix vector arithmetic and then you have an output
+17:15
+layer just typically alphine that's how we think about deep neural nets okay
+17:21
+very basic kind of make sure everyone's on the same page with terminology so I want to do this right now in lecture to
+17:27
+set up for discussion where you will see code that walks you through this specific example and lets you visualize
+17:33
+what's going on in this case seeing what's happening and you can learn you'll learn something from uh what happens in that discussion. Okay, any
+17:39
+questions on this before we move on to the next topic?
+17:47
+It's all very standard. Just want to make sure everyone's on the same page. Okay, great. Let's move on. Okay.
+18:08
+So, is this visible? Yes.
+18:16
+Okay. Is my mic working? Everyone can hear me. The recording can hear me?
+18:23
+Yes. No. Okay. Great. Okay. So um what I'm going
+18:30
+to do today is I'm going to talk through some basically standard terminology. A lot of this should be familiar to you
+18:36
+folks and then start going into what is going to be the focus of our attention
+18:41
+for the you know first almost four three four uh weeks of the class. I'm not sure
+18:47
+uh how many but uh where we're going to talk about optimization and that's going to be a a big thing that we're going to come back to again and again. What I'm
+18:54
+going to be talking about today is stuff that all of you have probably seen in some form or another in either your
+19:02
+optimization class or your machine learning class. And so it should be quite familiar to you. What might not be
+19:08
+as familiar is the specific interpretations because that's what we're going to be uh spending a little
+19:13
+bit more time on in class today. So this is a good lecture for you to try to get a sense of what is the kind of work that
+19:20
+we're going to be doing in uh a bunch a bunch of the class. Before I start, I want to announce that we will have
+19:27
+office hours right after class in 400 Corey. It's a little bit of a funky room to find, but what we will do every week
+19:34
+after lectures, we will kind of collect right outside lecture. So if you want to hang out for office hours, just like
+19:40
+hang out with us and then we will walk as a group to office hours. uh strongly
+19:45
+encourage you to come. So um if in case you can't find it, just wait for us right outside this room and we will
+19:51
+always walk together to the office hours room. Okay. So you've all taken the machine learning
+19:57
+class and within machine learning you've seen basically two different categories of problems, right? You've seen the
+20:03
+supervised learning style of stuff and you've seen unsupervised learning. So in supervised learning basically you have
+20:09
+this situation where you have these XY pairs of data. X is whatever
+20:15
+characteristics or features maybe that the that the data has and you can think of it as that uh you can call it your
+20:21
+input, you can call it your coariant. This is just again terminology. Y on the other hand is your output or
+20:28
+your label. So for example, you have a bunch of cats and dogs and so you have labels that say cat or dog. Now when you
+20:36
+think about these labels, the type of label that you're thinking about leads to different kinds of supervised
+20:42
+learning problems, right? If you have a real valued output, often the kind of uh
+20:48
+machine learning model that you're doing is a regression model where you're trying to fit uh something in the style
+20:54
+of le squares, not necessarily that. On the other hand, if you have binary or
+21:00
+discrete labels, then what you're trying to do is something like classification. So the cat and dog classification
+21:06
+problem is um is more of that style. And these are kind of the two classic things
+21:12
+that you look at under supervised uh learning. And here generally what we're doing is we're saying look let's take
+21:20
+one specific model and train it to solve one specific problem using this one
+21:26
+specific training data set that I have. That's the paradigm that you're operating in.
+21:32
+On the other hand then you have unsupervised learning right and on unsupervised learning the big thing is
+21:38
+that well we don't have the wise right we don't have any labels. And so what you're trying to do is you're trying to
+21:44
+uncover properties that are implicit in the X data that you have. So for example, the
+21:52
+most standard example that probably everyone has seen for unsupervised learning is principal components
+21:57
+analysis, right? I have a bunch of data and then I'm trying to recover what are
+22:03
+the most important directions or what are the directions with the most variation within this data.
+22:09
+The other kind of um unsupervised learning that you might have is then
+22:15
+clustering. And here probably everyone's seen K means as well, right? Uh in 189 you've definitely covered this. So there
+22:22
+you're trying to say this is kind of an unsupervised way of thinking about clustering, right? That's the kind of
+22:27
+unsupervised parallel. You're trying to say which of these folks are like the others and which of these folks are are
+22:34
+different. So you know there's a cluster here because these are all similar to each other. There's a cluster here. these these points are all similar to
+22:40
+each other. This is the second kind of unsupervised learning problem. And then maybe the third type that you have is is
+22:48
+looking at really density estimation. So saying let's say I have a bunch of data. I have X1, X2, X3, X4, so on and so
+22:54
+forth. And what I'm trying to understand is what is the underlying
+23:01
+distribution that actually captures all of this data. And then you use that for
+23:06
+basically all kinds of different follow-on problems. But this also falls into a category of unsupervised
+23:12
+learning. And this is all stuff that you should have seen before, you're familiar with. We just want to kind of put that
+23:18
+terminology out there, make sure everyone's on the same page. Do you want to add anything? Yeah, I just want to add one comment
+23:23
+here. Um, so for those who've taken a machine learning class, we're we're extremely confident that everyone has
+23:29
+seen something like PCA and everyone has seen K means. We know that some of you may or may not have seen explicit
+23:35
+density estimation. So we we know that. Um the other minor comment I wanted to
+23:40
+make is that what you probably experienced in your machine learning class was that these two categories felt
+23:47
+different to you in how they were taught in that you saw on this side one style
+23:53
+of how things were done. Just you set things up into some optimization framework and you did some kind of optimization thing with the exception of
+24:01
+one category here. where you learned about decision trees which felt a little different and over here what you saw
+24:07
+what might have felt like a whole bunch of bespoke algorithms that do this particular thing. So this is just a a
+24:14
+cultural thing you should also be aware of uh that you might be familiar with.
+24:20
+Um this will be different when we come to deep learning.
+24:27
+Any questions on this? We're good. Okay. So then now what are we trying to
+24:32
+think about when we think about deep learning? Well, within deep learning, we also in some sense have these two
+24:39
+categor categories, right? We have the supervised and unsupervised categories.
+24:44
+And you can use a deep network to do regression. You can use a deep network to do classification, right? We can
+24:50
+solve classical machine learning problems using deep learning techniques.
+24:56
+So that paradigm extends and is a standard thing to do.
+25:03
+What is something what is so what is a supervised learning type of problem that
+25:08
+deep learning kind of unlocks that maybe wasn't as studied in traditional machine learning. So one example of that is
+25:14
+something like localized annotation. So what do I mean by that? Let's say I have an image and in this image there is a
+25:23
+cat and there's a bicycle and there's a traffic light and there's a person
+25:28
+walking. Well, I want to basically have okay, these are all the pixels that what do these pixels represent? They
+25:34
+represent a the cat. I want to be able to shade out what the traffic light is. I want to be able to identify what uh
+25:41
+where the pedestrian is, for example. And if you think about this for example in the context of a self-driving car,
+25:47
+it's important to be able to do this kind of semantic segmentation also with context, right? It's one thing to say,
+25:52
+okay, here's an image and there's a cat in it. It's another thing to say that here's an image and there's a cat in the middle of the road here. So doing this
+26:01
+kind of semantic segmentation is something for example is a is a kind of supervised learning that you can unlock
+26:06
+using uh deep learning type of techniques. Again, um there is the unsupervised
+26:14
+flavor of deep learning techniques. And so here one of the most standard and uh
+26:19
+nice ones is of just learning embeddings, right? So what does it mean
+26:24
+to learn an embedding? An embedding is basically taking any kind of data and
+26:31
+turning it into vectors. um the standard and most famous of this
+26:36
+and kind of this came from u NLP is taking words and turning them into
+26:41
+vectors and so you have a vector for every single every single word how do I
+26:47
+learn what vector is for what word well that's I can think of that as a learning problem that is my process of learning
+26:54
+embeddings and this is basically you know in some sense uh similar in spirit
+27:00
+to the idea of principal components analysis We want to say look we have all
+27:05
+this data. We want to figure out what are the key dimensions of this problem.
+27:10
+I want to look at only those. I want to reduce the dimensionality of my data. Okay. So I take whatever my data set is
+27:16
+all my words or all of my numbers whatever they are and I want to embed them into a vector space into vectors so
+27:24
+that I can look at them within that vector space of those vectors. Okay. So there's a similarity here to how you've
+27:31
+been thinking about PCA. And then you know as I'm sure everyone
+27:36
+has heard that the other big thing that you have is generative models, right? So
+27:41
+you want to be able to generate a picture of a cat, a picture of a dog,
+27:47
+you want to be able to generate text. This is the big set of other kinds of uh
+27:53
+deep learning models where you have uh the ability to basically create uh or or
+28:00
+or generate samples from a particular from a particular distribution essentially and from that this has a
+28:06
+parallel to what we think about as density estimation in classical machine learning where you're saying well you
+28:12
+know if I want to develop a model a generative model for a cat what I'm really doing is I'm saying let me look
+28:19
+at all of my training data and can I develop a distribution for the pictures
+28:25
+of cats? And then when I want to generate a picture of a cat, what that really is is it's I'm trying to sample.
+28:31
+I'm saying take this distribution. Now draw me a sample from my distribution on
+28:36
+cats. Right? So that's what generative models um are trying to do. And we'll we'll talk about this more in the class
+28:42
+as we go on. And then within deep learning you have basically the paradigm that we are now
+28:48
+that's becoming more and more important which is the paradigm of foundation models. And this idea of a foundation
+28:55
+model is this idea that you have some data you've trained a model on something it has learned something and then you
+29:01
+take that foundation model and fine-tune it to your particular task. And this is
+29:08
+different from let's say how uh machine learning has been done for a while where
+29:13
+let's say I wanted to develop a model to predict housing prices um for you know
+29:19
+give me a house and give me the prediction for the house price well I train a specific model for that right I
+29:25
+take in the zip code I take in the neighborhood I take in the school information I take in you know what the
+29:32
+prices of the neighboring houses so on and so forth I feed this data in maybe as some vector I train some model and
+29:39
+then I get an output. And so I'm specifically training this model to predict houses uh house prices. Now if I
+29:46
+wanted to use this model to let's say you know predict uh the weather, that's
+29:53
+probably not going to work. Or even if I say I trained a model to predict house prices in the Bay Area and then I wanted
+29:59
+to use this model to predict house prices in New York. Well, my data is going to be drawn from completely
+30:05
+distrib different distributions. these models might not work. But the idea of foundation models is uh a fundamentally
+30:12
+different perspective where we're saying look we're just going to train data on a bunch uh train models on a bunch of
+30:18
+different data without necessarily even having a particular task in mind and we'll hope that the models will learn
+30:25
+some underlying representation of the data and then we can fine-tune it and use the representations that is somehow
+30:32
+learned in an underlying way to you know be fine-tuned to our specific specific
+30:38
+task and more and more we're moving into this foundation model fine-tuning perspective from the perspective that we
+30:44
+had before of a specific model for a specific task. Anything you want to add before I move
+30:50
+on? So uh here there's going to be a difference I mean this we just described
+30:55
+is the reality. Um, of course in this class we will still have you train oftentimes models from scratch for some
+31:01
+things you need to know how to do that. Just one has to understand that practice and the real world is shifting and the
+31:06
+engineering considerations are shifting and we are going to be teaching you about that shift um in the in the
+31:11
+course. Probably in your machine learning class you've just never touched this issue at all. You only train models from scratch for a specific purpose and
+31:17
+we were kind of told this is a paradigm and we just want to make you aware paradigms do shift.
+31:23
+Okay. So with this um these are just some examples of you know supervised learning tasks. Um these are nice uh
+31:31
+examples from the prince book. Here's an example of uh generative modeling. So these are generated
+31:38
+uh models. These are not real cats. So some examples. Okay.
+31:44
+So with this now I'm going to start writing. I highly encourage everyone to take notes and it's I'm really happy to
+31:50
+see that a bunch of people are taking notes. For those of you who have laptops open, I assume that you're using this
+31:56
+laptop to do something that is helping you learn actively right now in this
+32:01
+class. Otherwise, I strongly encourage you to put those laptops away. Um,
+32:07
+because it's distracting to you and it's distracting to your neighbors. So, if it's really essential for you to use
+32:12
+your laptop, go for it. But I encourage you to take notes especially with now I haven't really made slides for this
+32:18
+because I want to be able to write and uh have support you writing as I'm writing. Okay.
+32:33
+I think I just pulled the cable but yeah. Okay. Good. Okay. So now we're
+32:40
+going to be talking about optimization.
+32:51
+So we have in our case some XY pairs. This is our data. And what we're trying
+32:58
+to do is we want to be able to basically take in our data and predict a label. So
+33:04
+we have some training data. But what we want to be able to do is we want to do something with some new data. Given a
+33:09
+new sample X, I want to be able to predict what is the label for example Y on it. And for this we want to have some
+33:16
+model. Let's call that model F theta of X. And this gives us Y. And
+33:24
+so here again X is my input, Y is my output.
+33:30
+And here now I've introduced something new. I've introduced this theta. And these theta are my parameters.
+33:40
+Okay, maybe I'll try.
+33:48
+So, how am I going to do this? Well, I really want what do I want out of my f theta? I want to be able to do something
+33:54
+that takes in real world data and gives me an output and gives me a label of
+33:59
+that real thing. What do I actually have in my hand? In
+34:04
+my hand, I have just samples of training data. I have x1 y1 x2 y2 x3 y3. Right?
+34:12
+So the best thing I can do is I can say well let me try to do the best I can
+34:19
+given my training data. Right? So what I have
+34:38
+And the kind of standard thing that we always do in machine learning is we do
+34:43
+risk minimization or empirical risk minimization
+34:50
+on this training data
+34:58
+where let's say I'm taking some I want to look at the argument
+35:04
+over theta of now my loss function.
+35:10
+So I'm looking at this loss function. This L is my loss function. Y I
+35:16
+F theta XI.
+35:22
+So let me unpack this a little bit now. So this L here represents my loss
+35:29
+function. It's telling me how much do I care and how do I care when what my
+35:35
+model predicts which is this f theta of xi is different from yi right so this
+35:42
+could be for example squared loss it could be cross entropy loss whatever
+35:48
+pick your favorite loss function right this is telling me in what way do I care
+35:54
+when I get it wrong and I'm going to say look how many data points do I have let's say I have n training data points.
+36:01
+Well, these are my n samples. I'm going to look at the loss and the difference between yi and uh uh I I'm going to look
+36:07
+at the loss for each of these data points and then average them. And then I want to find that parameter. I want to
+36:14
+find that theta that minimizes this average loss. Right?
+36:19
+This is a specific well- definfined quantity that I can compute using my
+36:25
+training data. So why do I care about this particular loss? Is there something
+36:33
+special about this? In some sense, yes, it's the thing I
+36:38
+have. I care about this because the training data is the data that I have.
+36:43
+Right? So as we talked about in the first lecture, there's an element of looking where the light is here. You
+36:50
+know, why are we choosing to fit a model to our training data? Because we have that training data. If I had more data,
+36:57
+if I had other data, I would love to fit a model to that, but I don't have it. So, what sometimes can happen in, you
+37:05
+know, thinking about uh training these models is that we get so focused on the training data that we think that fitting
+37:11
+the model to the data is the point. But that's actually not the point. The point
+37:16
+is to be able to predict something about some real world data. That's what we're
+37:22
+trying to do. But we have reduced it to this problem of fitting a model to this
+37:28
+training data because that is what we know how to do. It's kind of like you sometimes think about all right why do I
+37:33
+why do we like linear models? We like linear models because we understand them because we can do something with them. It's the same kind of thing. We like the
+37:39
+training data because we have it in our pocket. So how do we then go from this once we
+37:45
+acknowledge this? How do we go from this to trying to you know approximate how well we can do in the real world? How do
+37:51
+we actually measure how well we can do? Right. So for this we have basically hold out test data. So we say look you
+37:59
+know if I want to be able to approximate what I can do on a real true new sample
+38:04
+that I have never seen before and I want to measure if my model is good or not. The best thing I can do is I look at the
+38:11
+data that I have. I hold out some of it. I pretend as though I have never seen it
+38:17
+before and I try to fit a model and I and I measure my performance of my model
+38:24
+that has been trained on this other training data on this new data that I've never seen. Right? So that is what we
+38:29
+think about as as hold out test data. But how do we now even kind of measure
+38:35
+this or how do we get a sense of how well we're doing? And because we
+38:41
+don't know anything about the real world data like say let's say you're trying to you know uh predict uh labels on
+38:48
+different kinds of animals and you have a label prediction for cats and dogs and
+38:54
+cows and sheep and snakes and you know so on and so forth
+39:00
+and if I could have a full distribution on the you know
+39:06
+all the animals in the world I would love to have that but I don't actually know what that distribution is. Maybe I
+39:12
+train on a bunch of stuff that is, you know, animals and then I get a picture of a bunch of dinosaurs.
+39:20
+You know, clearly my model that has never seen a picture of a dinosaur before is not going to do well on this.
+39:26
+So to be able to make some sense of how we are um going to be able to do, we have to
+39:33
+make some additional assumptions on our data. Right? If we can't say anything,
+39:38
+it's going to be really hard to give guarantees about what we can do because well, the real world can do lots of really crazy things. So the key
+39:45
+assumption that we often make in this setup is we assume I don't want this color.
+39:55
+So key assumption
+40:02
+is we assume that X and Y are drawn
+40:10
+from a distribution P XY. So I say that I have a joint
+40:17
+distribution from which these labels and these uh data points are drawn. And
+40:23
+let's say my training data and my test data are coming from uh these same same
+40:29
+situations. This might not always be true but often this is an assumption that we will make to be able to understand what our performance is. And
+40:36
+then we can think of our theta star as the argument
+40:43
+of theta over that expectation. Now now we can take an expectation over this distribution. We can think of this as
+40:49
+the loss of yi comma fa
+40:55
+x i what? Oh.
+41:15
+So this is basically the thing that we can use to try and uh capture the idea of our uh of generalization right how
+41:22
+well can we train can we predict something on data that we have not yet seen okay but even with this we have
+41:29
+some challenges and it's not like we can completely uh solve
+41:35
+this problem. So what are some of the key challenges that we that we see in something like this? Well, the first
+41:40
+challenge for example, challenge one
+41:46
+is that well, we've assumed that we have some underlying distribution pxy, but we
+41:53
+actually don't know what this is, right?
+42:02
+So, we don't know this. And so, how do we handle that? Well, we handle that essentially through
+42:09
+having our heldout test set, right? We're having an assumption that all of our data is coming from this underlying
+42:15
+distribution pxy. And so we say, well, the best we can do is we have this test
+42:20
+set. Let's pretend that that's the distribution. Let's assume that that's the underlying distribution. We will measure performance on the test set as
+42:27
+an approximation of this true um underlying expectation
+42:33
+that we actually want to capture. Okay, does that make sense to everyone? Everyone with me? Questions? Add
+42:39
+something? Yeah. Just a comment here is it's more way of thinking, right? Um when you're
+42:44
+getting when given a problem, you often are told everything the problem states is just taken as god-given, right? But
+42:51
+real life isn't like that. So, we're trying to point out to here is that we make assumptions to help us think, but
+42:57
+then we know those assumptions don't hold and you have to do something. This key distinction of what are the
+43:03
+assumptions you're making that are helping you think and then what are the things you have to actually do and how
+43:08
+do you bridge that gap is important to keep in mind
+43:57
+Okay, so the second challenge that you might have is that well I have this loss function and that's great but maybe it
+44:04
+doesn't work well with the kinds of optimizers that I want to use. As we're going to talk about optimization is kind
+44:10
+of the heart of um a lot of machine learning. So you want things that you can actually
+44:16
+run algorithms like gradient descent on, right? And if you have non-ifferiable
+44:21
+losses, well that's just not going to really work very well. And so the key solution here is that well if your loss
+44:27
+doesn't work find another loss um you know make it somehow make it
+44:33
+smooth make it continuous lose the non- differential abilities to be able to make it work again um as was emphasized
+44:40
+in the earlier lecture it's about what can you do to make things work right it's not about what would be perfect in
+44:48
+the ideal world it's um it's a there there is an element of what is the engineering problem to solve we to have
+44:54
+a sum loss by on which we can run gradient descent. So um that's one key thing and then there's a third challenge
+45:07
+which is let's say I did the all of this I found
+45:14
+some you know I found I made this assumption I found a loss that works and
+45:20
+I even found a theta hat right I fit my model I solved my optimization problem
+45:27
+here. I got a theta hat. Great.
+45:32
+Theta hat works great on training data.
+45:41
+But then I actually run it and evaluate it on my test data,
+45:46
+but fails on test data
+45:53
+in the sense that it performs really poorly. I maybe shouldn't say fails. performs poorly.
+46:04
+So somehow my theta hat has learned something very very specific about the
+46:09
+training data and is able to minimize the loss there. Get that be very low.
+46:15
+But whenever I show it something that is not from the training data,
+46:21
+it is completely failing. And the common reason that this happens is essentially
+46:27
+overfitting, right? You've somehow fit too closely to the exact examples that
+46:33
+you were given in the training data and you're not able to generalize outside of that to what might be your test data.
+46:41
+And so the common solution that we use for this is something that you have seen before
+46:46
+and that is regularization.
+46:53
+And what regularization does is it gives you basically some side information or some other pressure
+47:00
+on the parameters of your model to say hey we love the training data but just
+47:06
+not that much you know keep a little bit of distance. So try to
+47:13
+fit to something else. So the common what's the what's the regularization that you've all seen before
+47:19
+lasso. What else? What's even easier than lasso? ridge right so what is ridge
+47:24
+reg what is ridge doing if you think about ridge if I think about my ridge regularizer
+47:34
+right I have some loss I have let's say x w minus y whole squ
+47:40
+and if if I feel my w is fitting too closely to this data
+47:45
+what's something that I want to try and do I want to say hey maybe think about
+47:51
+putting W somewhere else. What's a way I can apply pressure on W to go somewhere else? I can change this term, right? I
+47:58
+can change this optimizer. So here I'm trying to find an argument over W.
+48:05
+And if I say lambda norm w,
+48:11
+what I'm saying is look, I want you to find a w that fits that makes x w be
+48:16
+equal to y, but I also want to make sure that you're not doing that while making
+48:22
+w be 10 billion, right? I care about w being small. And this is a common thing
+48:27
+that you do because you think that well, you know, parameters are generally small. And if you don't like this well
+48:33
+there's another you know hundred different ways of doing regularization to incorporate whatever side information
+48:39
+that you might have about W. You can do tikkenov you can do lasso whatever else you want right
+48:46
+and this you've seen you know in your classes before that can help this can help you avoid this problem of
+48:51
+overfitting by saying don't go too close to that training data but of course with
+48:57
+every solution there comes a new problem. So now what is the problem that we have introduced by the solution of
+49:05
+regularization? Yeah.
+49:11
+Bias. Yes. But what's a practical engineering problem that we need to deal with? Yeah.
+49:24
+It might be that this optimization problem is harder to solve. That's entirely possible. But I'm thinking of something very boring. I'm like how to
+49:31
+write how to actually solve this thing. What's lambda right now? There's one more number that I have to deal with. Is
+49:38
+lambda one? Is it 0.1? Is it 10? Each of these will give me a widely
+49:46
+different solution. Right? So it's not like oh you just write ridge you call ridge and it's solved. But it actually
+49:53
+matters what the parameters are. Now what I've introduced here is what this lambda is is now it's a hyperparameter
+50:00
+right
+50:06
+and I want to make sure that well the hyperparameter might will actually affect my solution. So if I was the best
+50:14
+student and I wanted to find the best hyperparameter what would I do?
+50:20
+I would try them all. Right? And then we could have the entire
+50:25
+class trying all of the hyperparameters and that that would be it. But it's clearly in feasible even for this simple
+50:32
+situation, right? To try all of the hyperparameters. So hyperparameter search is now
+50:39
+an extremely becomes becomes a problem. Um and how do we find this? And the thing is that lambda you know you might
+50:46
+have not have qualitative differences in the solution for different sorry let me
+50:51
+restate that lambdas and hyperparameters typically vary or the order of magnitude of this
+50:58
+hyperparameter is typically what matters. So when you're doing a hyperparameter search, often you're not
+51:03
+going to actually look at every single lambda, but you're going to look at different orders of magnitude. Um, and
+51:08
+you're going to try to do a sweep over that. But even that is often, you know, can be too hard to do. When you're doing
+51:15
+this, typically what you're going to do is you're going to have a set of validation data that you're going to keep separate. So this is your training
+51:21
+data, you have your validation data, and then you have your test data. This validation data is what you're going to
+51:27
+use to say well I trained my model on my training data. Let me now validate my
+51:32
+model by looking at uh how different hyperparameters are behaving uh on the
+51:38
+validation data. And then I have my test data which is kind of my what I'm going to use for my uh generalization
+51:45
+performance. Right? So this this makes sense. But in reality
+51:51
+when you come to deep learning you don't have just this one hyperparameter like you have in ridge and even in ridge
+51:57
+identifying the hyperparameter you cannot try them all right. So you have too many hyperparameters when you're
+52:03
+thinking about deep learning problems. So that's a key problem that again we
+52:08
+don't really know how to solve. So we've solved you know we solved the overfitting problems regular regularization but now we've introduced
+52:14
+this new problem of hyperparameter search. And so there's a couple of you know things that we can do here but this
+52:22
+is the new problem
+52:27
+is hyperparameter search.
+52:36
+Okay. And there's a couple of standard solutions that you kind of use. The
+52:41
+first is that you use um let's say you just try to take all of your hyperparameters and scale them together.
+52:48
+You kind of couple them together so that you pick what just picking by picking different scalings you're varying all of
+52:54
+the hyperparameters at the same time. And so you limit your search pace. You're not taking every hyperparameter and doing um a crazy amount of search uh
+53:02
+on it. So how should I write that? I should say scale hyper
+53:09
+parameters. Uh
+53:15
+together, couple them.
+53:23
+The other option that you have basically is to say well I think Alan likes to call it be superstitious.
+53:30
+um which basically says look at what people have done before and look at the
+53:36
+paper that you're building on. Look at whatever the default parameter was. Um
+53:42
+what did the people who just did the work before you do it? Just copy exactly that it worked for them. Hopefully it'll
+53:49
+work for you. And if you can't find something that matches exactly what you were doing, find the closest thing and
+53:54
+then use their hyperparameters. Right? So basically use what other people did.
+54:05
+Yes. Question. It seems like we really enjoy understanding our data and generalizing
+54:12
+and so I'm wondering if a better machine learning models that optimize
+54:21
+meaning
+54:26
+these like the lambda like alpha beta values change over time as the model's learning and the best way to learn needs
+54:34
+to be found through gradient descent. Does that exist like are there meta machine learning? Yes, this is Do you want to take that
+54:40
+question? Um, yeah. So, there's a lot of work on how you set hyper is a big problem. So,
+54:45
+there are learning methods that people use to try to set them. That's better than uh so talk about when you can't
+54:52
+search. So, first is you can search dumbly, you can then
+54:58
+search intelligently. There's a whole range of how to search intelligently. It's important to do dumb search well
+55:04
+too. So for doing dumb search, well the dumbest of dumb search is you drop down
+55:10
+a grid over all your hyperparameters, scale them on a log scale um for
+55:15
+appropriate appropriate scaling and just sample in this grid uh on a regular grid
+55:20
+and evaluate everywhere. Cursive dimensionality kills you there. Then there's the next dump approach which is
+55:26
+important to recognize is instead of searching that grid by exhaustive search, do random sampling.
+55:34
+randomly draw things inside that grid with an appropriate distribution and then pick the best one. I can afford to
+55:39
+do this many hyperparameter tests, draw that many samples. This this is better.
+55:45
+Okay. Then after that comes what you're talking about is more intelligent ways
+55:51
+of doing the sampling and possibly doing adaptive sampling there to do search.
+55:56
+All of that is hyperparameter search when you can afford to do the search. Then comes the problem of you can't
+56:03
+afford even that much and that's where what's being talked about here comes in which is the reality that every one of
+56:09
+you will face and everyone in practice faces all the time other questions
+56:17
+okay so with this now I want to say okay so
+56:22
+clearly we have established that optimization matters um so let's talk about optimization and what is the
+56:29
+optimizer that we are going to be using for most of our time
+56:35
+well it's going to be gradient descent or some variation on gradient descent okay so here what are we trying to do
+56:44
+let's say I have my loss function my uh this is um I have my y
+56:50
+f theta of x and I'm going to just rewrite this maybe
+56:55
+as the loss and explicitly call out this parameter theta theta um
+57:02
+x train y train. Okay,
+57:08
+gradient descent says okay let me try to now use
+57:14
+a step every single time to get a better and better estimate of what my parameter
+57:19
+theta is. So I say I start at some theta kn. This is my initial condition
+57:30
+and then I write theta t + 1 is given by the gradient descent update
+57:37
+theta times the gradient with respect to theta of my loss function.
+57:53
+theta um
+57:59
+okay so here basically I'm saying that
+58:05
+this is where my next step is this is where I currently am here is my learning rate
+58:11
+and this is my gradient so I'm going to take a step of the size um of given by
+58:17
+my learning rate in the direction of my negative gradient. Okay.
+58:22
+So now a whole lot of stuff that we do comes from the possibilities and the
+58:29
+limitations that are introduced by gradient descent because gradient descent or stoastic gradient descent or
+58:34
+the variations thereof are our optimizers of choice. The fact that we can implement these efficiently and
+58:40
+quickly um the fact that we can do back propagation is what enables everything
+58:47
+right. So understanding gradient descent fundamentally helps us understand what
+58:54
+are the possibilities and limitations in general for training gradient descent. Right?
+58:59
+So what we're going to do today is we're going to think about basically gradient descent and some brothers and sisters of
+59:07
+gradient descent essentially. So I want to think about this
+59:13
+specifically for the least squares problem. So I want to consider
+59:25
+now W is my parameter. I'm just taking the loss of w and that's just x w
+59:31
+minus y. Okay, so there's no regularizer here. I'm just trying to find a vector w
+59:39
+such that I can have this linear model be fit as well as possible. Okay,
+59:45
+I know that this is the least squares problem and I know my optimal solution for this.
+59:51
+I know that my war star is given by xrpose x inverse
+1:00:02
+xtranspose y. Okay.
+1:00:07
+And now I can write my gradient descent update equation. Actually all of you write the gradient descent update
+1:00:13
+equation as a good practice. You'll probably need it in homework zero and homework one anyway. So why don't you
+1:00:18
+write the gradient descent update equation?
+1:00:37
+So for that you have to take the gradient of this loss. So what is the gradient of a
+1:00:45
+squared norm? Anyone?
+1:00:51
+What's the gradient of this guy?
+1:00:57
+[Music] Okay, compute the gradient. Take one minute. I'll give you one minute.
+1:01:07
+I'll set a timer.
+1:01:17
+Yes. Question three
+1:01:24
+well on the test but not sorry perform well on the train but not
+1:01:31
+well on the test data. Is there a possibility that the probability distribution of your training data is
+1:01:37
+not close enough to the past data? Yeah, that's that's entirely possible,
+1:01:43
+right? And so there's a lot of different problems that you can that can show up of this form. One of the key like this
+1:01:51
+is called basically out of distribution data when your test data is out of the distribution of the training data. And that's kind of like this example where
+1:01:57
+you train on cats and dogs and then you're trying to classify dinosaurs.
+1:02:03
+smart way to tell if these two distributions are the same or close enough.
+1:02:08
+So definitely yes. So there is definitely you can do things that you will try to estimate the density of what
+1:02:15
+your your test data is. You will try to um
+1:02:21
+uh sometimes you can try to create samples that are from this from the if
+1:02:26
+if you have a sense of what the estimate of your test data is you can try to create samples generate samples either
+1:02:32
+come up with labels for those uh or acquire data uh there's this is a huge
+1:02:38
+huge area of research is how to handle this kind of out of distribution area how to out of distribution data
+1:02:45
+Okay. So now in that one minute everyone else
+1:02:51
+what is the gradient of this
+1:03:02
+very good right okay so make sure you know how to do this so with this we can
+1:03:08
+write this gradient update
+1:03:21
+Okay. And I'm just going to So this is a WT
+1:03:27
+here and I'm just going to rearrange this to write this as identity.
+1:03:34
+Bring the WTS together. 2 ADA XT X
+1:03:41
+times WT U plus now this 2 A XRpose
+1:03:50
+Y right so now what I see here is that I have a recurrence relation
+1:03:58
+on my WTS right that's the weight and so what do I know about these kinds of
+1:04:03
+recurrence relations what matters here in terms of so what do I want this gradient descent to do first what what
+1:04:09
+is the ideal behavior for this gradient descent for me to be able to
+1:04:15
+um identify my correct parameter
+1:04:20
+what's the word starts with a cge
+1:04:25
+converge good right I want this to converge to a solution and so I want to
+1:04:31
+take step by step by step go to wherever I want to do what matters for the convergence of this given that I have
+1:04:38
+this matrix here that is dominating how my iterates are evolving
+1:04:46
+this matrix is what is the key thing right and in fact I can think about this I can specifically think about this as
+1:04:52
+let's say I know wt minus one I can look at it as the distance to my optimal so I
+1:04:58
+know that my optimal here is given by this so I can instead of just thinking about conversion I can think specifically in the case of le squares I
+1:05:05
+can say how fast am I conversing to w and I can subtract war star from both sides.
+1:05:10
+This gives me i - 2 x wt.
+1:05:22
+Okay. So I'm not going to you know in the
+1:05:28
+interest of time and this you've all seen before. This I can just write as
+1:05:40
+okay just grouping some terms you can rewrite this also in terms of war star
+1:05:46
+and I get this evolution. So this thing here
+1:05:52
+this is a vector. What is this?
+1:05:59
+What kind of object is this? What are the shapes of this? Is this a vector? It's a matrix. Right?
+1:06:06
+So now if I want to try and understand how this vector so what I want this thing to
+1:06:13
+go to zero. I want to converge to my optimal
+1:06:19
+solution. What do I need to think about of this matrix to be able to
+1:06:26
+say anything about whether this is going to converge or not converge? What's the key thing?
+1:06:33
+Yeah, just start it out. Just it's values, right? So, what do I need to check for the IGEN values of this
+1:06:39
+thing? This everyone should know this. Just just Yeah, I just want to make sure that you're all with me. The whole room
+1:06:46
+should resoundingly speak up. The more of you speak up, the
+1:06:52
+less likely your own voice is heard. So there's
+1:06:57
+you know this you know this whatever is your gut is correct. Just say it.
+1:07:04
+Interesting. They're saying the continuous case. Ah okay. Okay. So these are discreet. So yes
+1:07:10
+there's two cases. So if you um
+1:07:16
+so in a discrete setting I want to make sure that my igen values are all
+1:07:26
+less than one small what happens if I 2 * 2 * 2 * 2 * 2 goes to infinity half*
+1:07:32
+half* half* half time half goes to zero right so which one do I want this to be
+1:07:38
+like less than one right so I want all of my igen values to be uh to be bounded
+1:07:44
+in absolute value. So I want to look at the igen values
+1:07:53
+of identity minus. Okay.
+1:08:01
+So what does this tell me now about these values? How can I can I say anything about these values?
+1:08:08
+What kind of matrix is this here? Identity is a special matrix. What kind of matrix is it?
+1:08:15
+Diagonal. It's also symmetric. What about 28 is a scalar xrpose x is also
+1:08:20
+symmetric. Right? So this entire matrix that I have here is symmetric. Right? And so I know that
+1:08:28
+basically the singular values and the igen values only differ in sign. So that also tells me like again you
+1:08:34
+know I can think about this in terms of igen values but I can also just think about it in terms of singular values doesn't matter because it's symmetric we
+1:08:39
+can just use igen values for now. So I want to make sure now that
+1:08:46
+absolute value of 1 - 2a
+1:08:52
+times this lambda max is less than one. Right? So now if I'm
+1:08:59
+looking at the igen values of this and if I want all of the igen values of this to be smaller than one, what are the two
+1:09:06
+candidates that I have for being the maximum igen value in terms of the igen values of xrpose x
+1:09:17
+I can look at remember there's an absolute value here. So I either have to look at the largest igen value or I have
+1:09:25
+to look at the smallest igen value. Right? The igen values of this are going to be in between
+1:09:33
+this and I need 1 - 2 a lambda min to be
+1:09:39
+also less than one. Does this make sense? Right? One of these two is going to be
+1:09:45
+the maximum value. And so when I process this through
+1:09:51
+actually take one minute and come up with a condition on ADA with this. Do
+1:09:56
+this. Do this algebra. Do this algebra. I'm not going to do it out. You do it
+1:10:02
+because if I write the answer, you won't remember why it's tricky.
+1:10:26
+So how do you deal with the absolute value? That means the absolute value implies
+1:10:33
+two inequalities that you have to satisfy, right? Not just one.
+1:11:04
+Okay. So if I just look at this uh lambda max equation, I have minus one
+1:11:12
+should be less than 1 minus 2 a lambda max. It should also be less than one.
+1:11:21
+Which side is trivially satisfied? the left hand side inequality is trivial or
+1:11:26
+the right hand side inequality is trivial. the right hand side, right? Okay, good.
+1:11:32
+So, this implies that I what I need to look at I need to have minus 2 less than minus
+1:11:38
+2 ADA lambda max, which implies that I need to have ADA less than one over
+1:11:45
+lambda max for this thing for this thing to be less than one. Right? So basically if I
+1:11:51
+choose a learning rate that is smaller than 1 / lambda max I know that this
+1:11:56
+quantity is going to be less than one. Is it sufficient for me to just look at that
+1:12:02
+or do I need to check anything else?
+1:12:11
+How many people think this is sufficient? How many people think I need to check anything else?
+1:12:18
+Okay. Well, you're both correct. Both answers are technically valid though this is in some sense sufficient. So
+1:12:24
+here we can do the same algebra. We will get ADA less than one over lambda min. Right? But what do we know about one
+1:12:29
+over lambda min and one over lambda max? Which one's the bigger one? Which one's smaller? One over lambda max is always
+1:12:34
+the tighter bound. Right? So if I can check that ada is less than one over lambda max. This is automatically satisfied. So the constraint on my
+1:12:42
+learning rate comes from the largest value of this matrix because that's what's trying to blow up your uh your
+1:12:49
+vector or your error as fast as it can. Right? So that's what says this is the maximum
+1:12:57
+step that you can take. Okay? So I don't think I'm
+1:13:02
+going to do this right now. I'll try to see. Okay. So I'll
+1:13:08
+do a small bit. Let's see. So now just to kind of build this
+1:13:14
+intuition further, this is some constraint on my learning rate. Does this tell me which learning
+1:13:22
+rate I should choose? You know, I don't want just sum any learning rate. But what actually matters is actually
+1:13:27
+choosing a specific learning rate. Which learning rate might I want to
+1:13:33
+choose? Or how do I go about doing that? Well, one property that I might want to have when I am choosing my learning rate
+1:13:40
+is I might want to have that all of my igen values are as close to each other
+1:13:46
+as possible. Basically, my two candidates for my maximum. I want to make them as close to each other as
+1:13:52
+possible because then I don't have one direction that's running off and the other direction that's very slow. Right?
+1:13:58
+the more uniform I my my learning rate ADA hits every single one of my igen values right so the more evenly
+1:14:06
+everything is is decaying the faster I'm going to converge otherwise what's going to happen is I'm going to move very fast
+1:14:11
+in some directions and move slowly in other directions so to deal with that
+1:14:17
+basically what I want to have for the fastest convergence is I want to have something like this
+1:14:27
+is I want to have my two candidates
+1:14:35
+be equal.
+1:14:46
+Okay. And of course you can equalize this if lambda min is equal to lambda max. But the other thing that you can do
+1:14:52
+if you solve this out you will get ADA is equal to 1 / lambda min plus
+1:15:01
+lambda max. Okay.
+1:15:08
+So what you will see is that the optimal ADA that you're going to have
+1:15:14
+is given by this. And then when you plug this back in to see what is the actual decay rate that you're getting, you'll
+1:15:21
+see that the condition number is actually going to pop out. So this is going to be the difference between the
+1:15:27
+uh or the ratio of the largest and the smallest singular values. And if you remember from the discussions on ridge
+1:15:33
+regression and regularization, remember when do things struggle to uh
+1:15:39
+converge? When do you have these overfitting problems or uh in your training data? Well, it's when your
+1:15:45
+condition number is bad, right? And so you see that all of these things are kind of connecting up and coming back
+1:15:50
+together. So I have five minutes and I'm going to try to get to one more thing in this
+1:15:57
+time coming back to regularization.
+1:16:05
+But what I want to try to build up to is the idea of the implicit regularization
+1:16:12
+of gradient descent. This is coming to the what are the possibilities and limitations that are introduced by
+1:16:18
+gradient descent. Well, one of the very cool properties that gradient descent has is it has this property of implicit
+1:16:24
+regularization. Have people heard this term implicit regularization before? No. There's no expectation that you have. Um
+1:16:32
+but this is something that people uh or that you know is a is a nice thing about gradient descent. And the way that we
+1:16:39
+can understand this property is through uh thinking about specifically uh
+1:16:46
+gradient descent from the perspective of igen values and singular values. Okay. So I'm not going to be able to finish
+1:16:52
+all of it today given the time I have but I'm going to start building up to it. And what I would like you to do is I
+1:16:57
+would like you to go home remember ridge remember SVD so that we can finish this
+1:17:03
+next time and you'll be fully on board. Plus you have to do homework zero which you have to learn that for. But now let
+1:17:09
+me take for example the ridge solution.
+1:17:14
+And my ridge solution looks something like this. Right? So if now my loss was the following
+1:17:22
+xw - y.
+1:17:31
+And now you should have um this expression should look familiar,
+1:17:48
+right? Everyone's seen this expression before. This is also by the way equal to the
+1:17:55
+following. So this is like kind of like the least squares version of ridge. There's also the minor version of ridge
+1:18:00
+or the kernel ridge form um xxrpose
+1:18:05
+plus lambda i inverse time y.
+1:18:12
+So this
+1:18:21
+the kernel
+1:18:27
+um This has some nice properties that um I don't think I have the time to talk about but definitely remind yourself of
+1:18:34
+why it is nicer to think about in a sense xxxrpose compared to xrpose x
+1:18:40
+because xxrpose is just computing the inner products of your features or inner products of your data right and so for
+1:18:47
+functions where you can easily compute the inner products this kernel form can be a lot easier and faster to compute.
+1:18:56
+But now if I think about this X is equal to U sigma VRpose as my SVD of X.
+1:19:04
+How can I write W star? Well, I can write star
+1:19:11
+and I will just write this out as
+1:19:18
+I'll use this form.
+1:19:27
+I'm going to have this xrpose x. So I'll I'll I'll I'll
+1:19:32
+um yeah.
+1:19:45
+Um
+1:19:53
+so let me plug in uh I get v sigma
+1:19:59
+transpose urpose times u sigma
+1:20:05
+pose plus lambda i inverse
+1:20:11
+time xrpose
+1:20:22
+times y. This is my w star.
+1:20:30
+And I will I'm just out of time. Okay, I will do this again next time. But this
+1:20:36
+basically what I want to point out is that this I can write
+1:20:43
+as the following.
+1:20:57
+Okay. Yeah.
+1:21:04
+Okay. So what I want to say here uh I'll do this again next time but what I want
+1:21:10
+to say here is look at this particular quantity here
+1:21:15
+right so these are the singular vectors here and here the left and the right singular vectors
+1:21:23
+if I can basically what this is saying is like look I'm like if I look at gradient descent it's going it's decoupling the movement in the
+1:21:30
+directions given by each of the singular vectors right that's what these are these things are pulling out
+1:21:36
+and what this quantity is here when lambda is very very close to zero when it's very small what I have is that
+1:21:45
+this thing becomes very small right if if lambda is very close to zero sigma
+1:21:52
+square over sigma squar is basically one over sigma
+1:21:58
+sorry Yeah,
+1:22:04
+this sigma over sigma squar uh is basically like one over sigma. Whereas when lambda is very large, what we get
+1:22:11
+is that this thing uh is close to zero and then you don't see any movement in any of those directions.
+1:22:18
+So we will talk about how this is connected to early stopping of gradient descent in the in the next lecture. I'm
+1:22:23
+over time so I'll stop here now. So we have office hours in 400 Cy.
+1:22:29
+Yeah. So, we'll walk over there next.
