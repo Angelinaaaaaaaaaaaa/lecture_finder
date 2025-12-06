@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Environment
+.env
+.env.*
+
+# Local text data (transcripts, notes, outputs)
+data/*.txt
+
+# Lecture index (contains embeddings derived from transcripts)
+lecture_index.json
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
